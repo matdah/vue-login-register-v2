@@ -3,11 +3,7 @@
     <header>
       <h1>Login/register</h1>
 
-      <nav>
-        <RouterLink to="/"><span class="btn btn-primary">Hem</span></RouterLink>
-        <RouterLink to="/register"><span class="btn btn-primary">Register</span></RouterLink>
-        <RouterLink to="/login"><span class="btn btn-primary">Login</span></RouterLink>
-      </nav>
+      <NavBar />
     </header>
 
     <main>
@@ -18,10 +14,9 @@
 
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import NavBar from './components/NavBar.vue'
 </script>
 
 <style scoped>
-.btn {
-  margin-right: 10px;
-}
+
 </style>

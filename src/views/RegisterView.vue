@@ -4,15 +4,15 @@
         <form class="form-signin">
             <div v-show="outputMsg" v-html="outputMsg"></div>
             <div class="form-floating">
-                <input type="name" class="form-control" id="floatingInput" placeholder="Förnamn Efternamn" required>
+                <input type="name" class="form-control" v-model="name" placeholder="Förnamn Efternamn" required>
                 <label for="floatingInput">Namn</label>
             </div>
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                <input type="email" class="form-control" v-model="email" placeholder="name@example.com" required>
                 <label for="floatingInput">E-post</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                <input type="password" class="form-control" v-model="password" placeholder="Password" required>
                 <label for="floatingPassword">Lösenord</label>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit" @click.prevent="register">Registrera</button>
@@ -34,7 +34,7 @@ export default {
     },
     methods: {
         async register() {
-            if (this.name === "" || this.email === "" || password === "") {
+            if (this.name === "" || this.email === "" || this.password === "") {
                 this.outputMsg = "<p class='alert alert-danger'>Samtliga fält är obligatoriska!</p>";
                 return;
             }
@@ -45,7 +45,7 @@ export default {
                     password: this.password
                 });
                 console.log(result);
-                this.outputMsg = "<p class='alert altert-danger'>Kontot är registrerat.</p>";
+                this.outputMsg = "<p class='alert alert-danger'>Kontot är registrerat.</p>";
 
             } catch (error) {
                 console.log(error);
