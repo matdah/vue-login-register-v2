@@ -1,0 +1,10 @@
+/* CSS goes here */
+main {
+    margin-top: 1em;
+}
+
+.center-form {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
