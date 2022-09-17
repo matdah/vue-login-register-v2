@@ -1,9 +1,6 @@
 <template>
     <div class="center-form">
         <h2>Inloggning</h2>
-        <div>
-            <p>User: {{ authStore.user }}</p>
-        </div>
         <form class="form-signin">
             <div v-show="outputMsg" v-html="outputMsg"></div>
             <div class="form-floating">
@@ -14,13 +11,13 @@
                 <input type="password" class="form-control" v-model="password" placeholder="Password" required>
                 <label for="floatingPassword">Lösenord</label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit" @click.prevent="login">Logga in</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" @click.prevent="loginUser">Logga in</button>
         </form>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
+//import axios from 'axios';
 import { useAuthStore } from '@/stores/auth';
 export default {
     name: 'LoginView',
@@ -38,12 +35,12 @@ export default {
         }
     },
     methods: {
-        async login() {
-
+        async loginUser() {
+            console.log("Logging in...");
             await this.authStore.login(this.email, this.password);
             
             if(this.authStore.isAuthenticated) {
-                //this.$router.push({ name: 'HomeView' });
+                //this.$router.push({ name: 'home' });
                 this.outputMsg = "<p class='alert alert-primary'>Inloggad ok!</p>";
                 this.outputMsg += "<p class='alert alert-primary'>Token: " + this.authStore.token + "</p>";
             } else {
