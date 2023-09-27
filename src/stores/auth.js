@@ -85,7 +85,6 @@ export const useAuthStore = defineStore("auth", {
 
             // If token and user exist, set token and user
             if (token && user) {
-                console.log("YES!");
                 this.setToken(token);
                 this.setUser(user);
                 this.setIsLoggedIn(true);
