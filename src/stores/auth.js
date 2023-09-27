@@ -2,10 +2,18 @@ import { defineStore } from "pinia";
 
 export const useAuthStore = defineStore("auth", {
     state: () => {
+        // Chek if token exists in local storage = logged in
+        let token = localStorage.getItem("token");
+        let user = JSON.parse(localStorage.getItem("user"));
+        let loggedIn = false;
+        if (token) {
+            loggedIn = true;
+        }
+
         return {
-            isLoggedIn: null,
-            token: null,
-            user: null,
+            isLoggedIn: loggedIn,
+            token: token,
+            user: user,
             message: null
         }
     },
