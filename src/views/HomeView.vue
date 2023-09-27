@@ -1,22 +1,21 @@
 <template>
-  <main>
-    <h2>Startsidan</h2>
+  <main class="container mt-5">    
+      <h2>Startsidan</h2>      
 
     <TestPinia />
   </main>
 </template>
 
 <script>
-import TestPinia from '@/components/TestPinia.vue'
+import TestPinia from "@/components/TestPinia.vue";
 
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   components: {
-    TestPinia
-  }
-}
+    TestPinia,
+  },
+};
 </script>
 
 <style scoped>
-
 </style>

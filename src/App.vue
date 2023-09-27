@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container pt-5">
     <header>
-      <h1>Login/register</h1>
+      <h1 class="mb-4">Registrering/inlogging</h1>
 
       <NavBar />
     </header>

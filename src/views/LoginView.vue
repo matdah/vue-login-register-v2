@@ -1,13 +1,13 @@
 <template>
-    <div class="center-form">
+    <div class="">
         <h2>Inloggning</h2>
-        <form class="form-signin">
-            <div v-show="outputMsg" v-html="outputMsg"></div>
-            <div class="form-floating">
+        <div v-show="outputMsg" v-html="outputMsg"></div>
+        <form v-if="showForm" class="form-signin">            
+            <div class="form-floating mb-4">
                 <input type="email" class="form-control" v-model="email" placeholder="name@example.com" required>
                 <label for="floatingInput">E-post</label>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-4">
                 <input type="password" class="form-control" v-model="password" placeholder="Password" required>
                 <label for="floatingPassword">Lösenord</label>
             </div>
@@ -24,7 +24,8 @@ export default {
     setup() {
         const authStore = useAuthStore();
         return {
-            authStore
+            authStore,
+            showForm: true
         };
     },
     data() {
@@ -43,27 +44,16 @@ export default {
                 //this.$router.push({ name: 'home' });
                 this.outputMsg = "<p class='alert alert-primary'>Inloggad ok!</p>";
                 this.outputMsg += "<p class='alert alert-primary'>Token: " + this.authStore.token + "</p>";
+                
+                // Hide form
+                this.showForm = false;
+
+                // Clear fields
+                this.email = "";
+                this.password = "";
             } else {
                 this.outputMsg = "<p class='alert alert-danger'>Felaktig e-postadress eller lösenord.</p>";
             }
-
-            // if (this.email === "" || password === "") {
-            //     this.outputMsg = "<p class='alert alert-danger'>Samtliga fält är obligatoriska!</p>";
-            //     return;
-            // }
-            // try {
-            //     let result = await axios.post("http://127.0.0.1:8000/api/register", {
-            //         name: this.name,
-            //         email: this.email,
-            //         password: this.password
-            //     });
-            //     console.log(result);
-            //     this.outputMsg = "<p class='alert altert-danger'>Kontot är registrerat.</p>";
-
-            // } catch (error) {
-            //     console.log(error);
-            //     this.outputMsg = "<p class='alert alert-primary'>Fel vid registrering - e-postadressen är troligen registrerad.</p>";
-            // }
         }
     }
 }
@@ -71,23 +61,6 @@ export default {
 
 <style scoped>
 .form-signin {
-    max-width: 330px;
-    padding: 15px;
-}
-
-.form-signin .form-floating:focus-within {
-    z-index: 2;
-}
-
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    max-width: 700px;
 }
 </style>

@@ -1,17 +1,17 @@
 <template>
-    <div class="center-form">
+    <div class="">
         <h2>Registera konto</h2>
         <form class="form-signin">
             <div v-show="outputMsg" v-html="outputMsg"></div>
-            <div class="form-floating">
+            <div class="form-floating mb-4">
                 <input type="name" class="form-control" v-model="name" placeholder="Förnamn Efternamn" required>
                 <label for="floatingInput">Namn</label>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-4">
                 <input type="email" class="form-control" v-model="email" placeholder="name@example.com" required>
                 <label for="floatingInput">E-post</label>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-4">
                 <input type="password" class="form-control" v-model="password" placeholder="Password" required>
                 <label for="floatingPassword">Lösenord</label>
             </div>
@@ -45,8 +45,12 @@ export default {
                     password: this.password
                 });
                 console.log(result);
-                this.outputMsg = "<p class='alert alert-danger'>Kontot är registrerat.</p>";
+                this.outputMsg = "<p class='alert alert-success'>Kontot är registrerat.</p>";
 
+                // Clear fields
+                this.name = "";
+                this.email = "";
+                this.password = "";
             } catch (error) {
                 console.log(error);
                 this.outputMsg = "<p class='alert alert-primary'>Fel vid registrering - e-postadressen är troligen registrerad.</p>";
@@ -58,23 +62,6 @@ export default {
 
 <style scoped>
 .form-signin {
-    max-width: 330px;
-    padding: 15px;
-}
-
-.form-signin .form-floating:focus-within {
-    z-index: 2;
-}
-
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    max-width: 700px;
 }
 </style>
