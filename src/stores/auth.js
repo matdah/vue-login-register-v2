@@ -38,12 +38,20 @@ export const useAuthStore = defineStore("auth", {
                 this.setToken(data.token);
                 this.setUser(data.user);
                 this.isLoggedIn = true;
+
+                // Store token and user in local storage
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
             }
         },
         async logout() {
             this.setToken(null);
             this.setUser(null);
-            this.setIsLoggedIn(null)
+            this.setIsLoggedIn(null);
+
+            // Clear storage
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
         },
         async register(name, email, password) {
             const response = await fetch("http://localhost:8000/api/register", {
@@ -58,32 +66,7 @@ export const useAuthStore = defineStore("auth", {
                 }),
             });
             const data = await response.json();
-            if (data.token) {
-                this.setToken(data.token);
-                this.setUser(data.user);
-            }
+            console.log(data);
         }
-    },
-    watch: {
-        token: (token) => {
-            console.log("Watch...");
-            if (token) {
-                localStorage.setItem("token", token);
-            } else {
-                localStorage.removeItem("token");
-            }
-        },
-        user: (user) => {
-            if (user) {
-                localStorage.setItem("user", JSON.stringify(user));
-            } else {
-                localStorage.removeItem("user");
-            }
-        }
-    },
-    getters: {
-        getToken: (state) => state.token,
-        getUser: (state) => state.user,
-        isAuthenticated: (state) => !!state.token,
     }
 });

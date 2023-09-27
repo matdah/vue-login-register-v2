@@ -40,7 +40,7 @@ export default {
             console.log("Logging in...");
             await this.authStore.login(this.email, this.password);
             
-            if(this.authStore.isAuthenticated) {
+            if(this.authStore.isLoggedIn) {
                 //this.$router.push({ name: 'home' });
                 this.outputMsg = "<p class='alert alert-primary'>Inloggad ok!</p>";
                 this.outputMsg += "<p class='alert alert-primary'>Token: " + this.authStore.token + "</p>";
