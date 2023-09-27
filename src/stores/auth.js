@@ -37,7 +37,7 @@ export const useAuthStore = defineStore("auth", {
                 //console.table(data.user);
                 this.setToken(data.token);
                 this.setUser(data.user);
-                this.isLoggedIn = true;
+                this.setIsLoggedIn(true);
 
                 // Store token and user in local storage
                 localStorage.setItem("token", data.token);
@@ -67,6 +67,21 @@ export const useAuthStore = defineStore("auth", {
             });
             const data = await response.json();
             console.log(data);
+        },
+        initializeFromLocalStorage() {
+            // Get token and user from local storage
+            const token = localStorage.getItem("token");
+            const user = JSON.parse(localStorage.getItem("user"));
+
+            console.log("Initializing from local storage");
+
+            // If token and user exist, set token and user
+            if (token && user) {
+                console.log("YES!");
+                this.setToken(token);
+                this.setUser(user);
+                this.setIsLoggedIn(true);
+            }
         }
     }
 });

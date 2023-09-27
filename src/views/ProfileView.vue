@@ -47,7 +47,7 @@ export default {
     const authStore = useAuthStore();
     const router = useRouter();
 
-    if (!authStore.isAuthenticated) {
+    if (!authStore.isLoggedIn) {
       next("/login"); // Redirect to the login page if not authenticated
     } else {
       next();
