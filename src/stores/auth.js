@@ -59,7 +59,7 @@ export const useAuthStore = defineStore("auth", {
 
             // Clear storage
             localStorage.removeItem("token");
-            localStorage.removeItem("user");
+            localStorage.removeItem("user");            
         },
         async register(name, email, password) {
             const response = await fetch("http://localhost:8000/api/register", {

@@ -42,6 +42,8 @@ export default {
     async logout() {
       console.log("Logging out...");
       this.authStore.logout();
+      // Redirect to start page
+      this.$router.push({ name: "home" });
     },
   },
 };
