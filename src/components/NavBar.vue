@@ -16,6 +16,7 @@
     </template>
     <template v-else>
       <RouterLink to="/"><span class="btn btn-primary">Hem</span></RouterLink>
+      <RouterLink to="/addnews"><span class="btn btn-primary">Lägg till nyhet</span></RouterLink>
       <RouterLink to="/profile"
         ><span class="btn btn-primary">Profil</span></RouterLink
       >
